@@ -325,6 +325,15 @@ export default function JuryDashboard() {
       {showEvaluationModal && submission && (
         <div className="modal-overlay">
           <div className="glass-card fade-in" style={{ width: '100%', maxWidth: '680px', maxHeight: '90vh', overflowY: 'auto', padding: '36px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+              <button 
+                onClick={() => setShowEvaluationModal(false)} 
+                className="btn btn-secondary" 
+                style={{ padding: '4px 10px', fontSize: '12px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+              >
+                <ArrowLeft size={12} /> Back
+              </button>
+            </div>
             <h2 style={{ fontSize: '22px', marginBottom: '4px', fontFamily: 'var(--font-display)' }}>Evaluate Project</h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px', marginBottom: '24px' }}>Team: <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{selectedTeam?.team_name}</span></p>
             
@@ -478,12 +487,31 @@ export default function JuryDashboard() {
               />
             </div>
             
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
-              <button onClick={() => setShowEvaluationModal(false)} className="btn btn-secondary" style={{ padding: '8px 20px' }}>
-                Discard
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', flexWrap: 'wrap' }}>
+              <button 
+                onClick={() => {
+                  setShowEvaluationModal(false);
+                  setSelectedHackathon(null);
+                }} 
+                className="btn btn-secondary" 
+                style={{ padding: '8px 16px', color: 'var(--text-secondary)' }}
+              >
+                Return to Dashboard
               </button>
-              <button onClick={handleSubmitEvaluation} disabled={actionLoading} className="btn btn-primary" style={{ padding: '8px 24px' }}>
-                <Check size={14} /> {actionLoading ? 'Saving...' : 'Save scorecard'}
+              <button 
+                onClick={() => setShowEvaluationModal(false)} 
+                className="btn btn-secondary" 
+                style={{ padding: '8px 16px' }}
+              >
+                Return to Submissions
+              </button>
+              <button 
+                onClick={handleSubmitEvaluation} 
+                disabled={actionLoading} 
+                className="btn btn-primary" 
+                style={{ padding: '8px 24px' }}
+              >
+                <Check size={14} /> {actionLoading ? 'Saving...' : 'Save Scorecard'}
               </button>
             </div>
           </div>

@@ -36,6 +36,26 @@ export const createClient = () => {
           localStorage.setItem('mock_users', JSON.stringify(mockUsers))
         }
 
+        // Clean corrupted mock_users
+        const cleanedUsers = mockUsers.filter((u: any) => u && u.email && u.id && u.user_metadata && u.user_metadata.role);
+        if (cleanedUsers.length !== mockUsers.length) {
+          localStorage.setItem('mock_users', JSON.stringify(cleanedUsers))
+        }
+
+        // Clean corrupted mock_user_profiles
+        const mockProfiles = JSON.parse(localStorage.getItem('mock_user_profiles') || '{}')
+        let profilesCleaned = false
+        for (const key of Object.keys(mockProfiles)) {
+          const p = mockProfiles[key]
+          if (!p || !p.email || !p.role || !p.id) {
+            delete mockProfiles[key]
+            profilesCleaned = true
+          }
+        }
+        if (profilesCleaned) {
+          localStorage.setItem('mock_user_profiles', JSON.stringify(mockProfiles))
+        }
+
         // Seed default colleges if missing
         if (!localStorage.getItem('mock_colleges')) {
           const defaultColleges = [
@@ -67,6 +87,99 @@ export const createClient = () => {
           if (usersUpdated) {
             localStorage.setItem('mock_users', JSON.stringify(users))
           }
+        }
+
+        // Seed default hackathons
+        if (!localStorage.getItem('mock_hackathons')) {
+          const defaultHackathons = [
+            {
+              id: "hackathon-1",
+              name: "AI Innovation Hackathon",
+              description: "Develop artificial intelligence solutions, agentic systems, or LLM integrations.",
+              theme: "Artificial Intelligence",
+              registration_deadline: new Date(Date.now() + 86400000 * 7).toISOString(),
+              registration_fee: 0,
+              max_team_size: 5,
+              status: "published",
+              created_at: new Date().toISOString()
+            },
+            {
+              id: "hackathon-2",
+              name: "Web3 Global Challenge",
+              description: "Design decentralized applications, smart contracts, and Web3 solutions.",
+              theme: "Blockchain",
+              registration_deadline: new Date(Date.now() + 86400000 * 10).toISOString(),
+              registration_fee: 15,
+              max_team_size: 4,
+              status: "published",
+              created_at: new Date().toISOString()
+            }
+          ]
+          localStorage.setItem('mock_hackathons', JSON.stringify(defaultHackathons))
+        }
+
+        // Seed default registrations
+        if (!localStorage.getItem('mock_registrations')) {
+          const defaultRegs = [
+            {
+              id: "reg-1",
+              hackathon_id: "hackathon-1",
+              user_id: "ddbdc6a9-0602-47a0-9122-52901ae15855",
+              registration_status: "pending",
+              payment_status: "pending",
+              registered_at: new Date().toISOString()
+            }
+          ]
+          localStorage.setItem('mock_registrations', JSON.stringify(defaultRegs))
+        }
+
+        // Seed default teams
+        if (!localStorage.getItem('mock_teams')) {
+          const defaultTeams = [
+            {
+              id: "team-1",
+              team_name: "Alpha Coders",
+              hackathon_id: "hackathon-1",
+              team_lead_id: "ddbdc6a9-0602-47a0-9122-52901ae15855",
+              created_at: new Date().toISOString()
+            }
+          ]
+          localStorage.setItem('mock_teams', JSON.stringify(defaultTeams))
+        }
+
+        // Seed default team members
+        if (!localStorage.getItem('mock_team_members')) {
+          const defaultMembers = [
+            {
+              id: "member-1",
+              team_id: "team-1",
+              user_id: "ddbdc6a9-0602-47a0-9122-52901ae15855",
+              created_at: new Date().toISOString()
+            }
+          ]
+          localStorage.setItem('mock_team_members', JSON.stringify(defaultMembers))
+        }
+
+        // Seed default submissions
+        if (!localStorage.getItem('mock_submissions')) {
+          const defaultSubs = [
+            {
+              id: "sub-1",
+              team_id: "team-1",
+              hackathon_id: "hackathon-1",
+              project_title: "Smart Medical Diagnostic Agent",
+              project_description: "An AI-powered diagnostic helper that reads symptoms and provides early advice using clinical APIs.",
+              repo_link: "https://github.com/test/medical-agent",
+              demo_video_url: "https://youtube.com/watch?v=demo",
+              ppt_url: JSON.stringify({
+                ppt: "https://google.com/slides/123",
+                pdf: "https://google.com/docs/123.pdf"
+              }),
+              status: "submitted",
+              created_at: new Date().toISOString()
+            }
+          ]
+          localStorage.setItem('mock_submissions', JSON.stringify(defaultSubs))
         }
       }
     }
@@ -114,7 +227,7 @@ export const createClient = () => {
               id = '4c54426a-1625-4fe7-8174-7cc514262d1f'
               collegeName = 'PSNA'
             }
-
+ 
             found = {
               id,
               email,
@@ -269,6 +382,16 @@ export const createClient = () => {
 
         seedMockUsers();
 
+        // Helpers to load/save custom mocked tables
+        const getTableData = (table: string) => {
+          const stored = localStorage.getItem(`mock_${table}`)
+          return stored ? JSON.parse(stored) : []
+        }
+
+        const saveTableData = (table: string, list: any[]) => {
+          localStorage.setItem(`mock_${table}`, JSON.stringify(list))
+        }
+
         // ------------------ USERS TABLE ------------------
         if (this.tableName === 'users') {
           const mockUserJson = localStorage.getItem('mock_user');
@@ -309,6 +432,30 @@ export const createClient = () => {
                 ...this.valuesToUpdate
               };
               localStorage.setItem('mock_user_profiles', JSON.stringify(mockProfiles));
+
+              // Sync to mock_users
+              const uIdx = mockUsers.findIndex((u: any) => u.id === filterId);
+              if (uIdx !== -1) {
+                if (this.valuesToUpdate.role !== undefined) {
+                  mockUsers[uIdx].user_metadata.role = this.valuesToUpdate.role;
+                }
+                if (this.valuesToUpdate.full_name !== undefined) {
+                  mockUsers[uIdx].user_metadata.full_name = this.valuesToUpdate.full_name;
+                }
+                localStorage.setItem('mock_users', JSON.stringify(mockUsers));
+
+                // If this is the active user, update mock_user session and cookie
+                const activeUserJson = localStorage.getItem('mock_user');
+                if (activeUserJson) {
+                  const activeUser = JSON.parse(activeUserJson);
+                  if (activeUser.id === filterId) {
+                    activeUser.user_metadata.role = mockUsers[uIdx].user_metadata.role;
+                    activeUser.user_metadata.full_name = mockUsers[uIdx].user_metadata.full_name;
+                    localStorage.setItem('mock_user', JSON.stringify(activeUser));
+                    document.cookie = `mock_user=${encodeURIComponent(JSON.stringify(activeUser))}; path=/; max-age=3600`;
+                  }
+                }
+              }
             }
             return this.valuesToUpdate;
           }
@@ -319,6 +466,10 @@ export const createClient = () => {
             if (filterId) {
               delete mockProfiles[filterId];
               localStorage.setItem('mock_user_profiles', JSON.stringify(mockProfiles));
+
+              // Also delete from mock_users so they cannot log in and disappear from lists
+              const filteredUsers = mockUsers.filter((u: any) => u.id !== filterId);
+              localStorage.setItem('mock_users', JSON.stringify(filteredUsers));
             }
             return [];
           }
@@ -655,7 +806,149 @@ export const createClient = () => {
           return list;
         }
 
-        return [];
+        // ------------------ OTHER GENERIC MOCKED TABLES ------------------
+        // Handle insert for generic tables
+        if (this.valuesToInsert) {
+          const tableList = getTableData(this.tableName);
+          const rows = Array.isArray(this.valuesToInsert) ? this.valuesToInsert : [this.valuesToInsert];
+          const inserted: any[] = [];
+          for (const r of rows) {
+            const newRow = {
+              id: r.id || Math.random().toString(36).substring(2, 9) + '-' + Math.random().toString(36).substring(2, 9),
+              ...r,
+              created_at: r.created_at || new Date().toISOString()
+            };
+            tableList.push(newRow);
+            inserted.push(newRow);
+          }
+          saveTableData(this.tableName, tableList);
+          return this.singleResult ? inserted[0] : inserted;
+        }
+
+        // Handle update for generic tables
+        if (this.valuesToUpdate) {
+          let tableList = getTableData(this.tableName);
+          let updatedRows: any[] = [];
+          tableList = tableList.map((row: any) => {
+            let match = true;
+            for (const filter of this.filters) {
+              if (filter.op === 'in') {
+                if (!filter.val.includes(row[filter.col])) match = false;
+              } else {
+                if (row[filter.col] !== filter.val) match = false;
+              }
+            }
+            if (match) {
+              const updated = {
+                ...row,
+                ...this.valuesToUpdate,
+                updated_at: new Date().toISOString()
+              };
+              updatedRows.push(updated);
+              return updated;
+            }
+            return row;
+          });
+          saveTableData(this.tableName, tableList);
+          return this.singleResult ? updatedRows[0] : updatedRows;
+        }
+
+        // Handle delete for generic tables
+        if (this.isDelete) {
+          let tableList = getTableData(this.tableName);
+          tableList = tableList.filter((row: any) => {
+            let match = true;
+            for (const filter of this.filters) {
+              if (filter.op === 'in') {
+                if (!filter.val.includes(row[filter.col])) match = false;
+              } else {
+                if (row[filter.col] !== filter.val) match = false;
+              }
+            }
+            return !match;
+          });
+          saveTableData(this.tableName, tableList);
+          return [];
+        }
+
+        // Handle select for generic tables
+        let list = getTableData(this.tableName);
+
+        // Apply filters
+        for (const filter of this.filters) {
+          if (filter.op === 'in') {
+            list = list.filter((item: any) => filter.val.includes(item[filter.col]));
+          } else {
+            list = list.filter((item: any) => item[filter.col] === filter.val);
+          }
+        }
+
+        // Apply ordering
+        if (this.orderCol) {
+          const c = this.orderCol;
+          const asc = this.orderAscending;
+          list.sort((a: any, b: any) => {
+            if (a[c] < b[c]) return asc ? -1 : 1;
+            if (a[c] > b[c]) return asc ? 1 : -1;
+            return 0;
+          });
+        }
+
+        // Apply limit
+        if (this.limitVal !== null) {
+          list = list.slice(0, this.limitVal);
+        }
+
+        // Resolve relational joins
+        if (this.tableName === 'registrations') {
+          const hackathons = getTableData('hackathons');
+          const users = Object.values(JSON.parse(localStorage.getItem('mock_user_profiles') || '{}'));
+          const mockUsers = JSON.parse(localStorage.getItem('mock_users') || '[]');
+
+          list = list.map((reg: any) => {
+            const hack = hackathons.find((h: any) => h.id === reg.hackathon_id);
+            let u = users.find((usr: any) => usr.id === reg.user_id);
+            if (!u) {
+              const mu = mockUsers.find((usr: any) => usr.id === reg.user_id);
+              if (mu) {
+                u = {
+                  id: mu.id,
+                  email: mu.email,
+                  full_name: mu.user_metadata?.full_name || 'Participant',
+                  role: mu.user_metadata?.role || 'participant',
+                  created_at: new Date().toISOString()
+                };
+              }
+            }
+            return {
+              ...reg,
+              hackathons: hack || null,
+              users: u || null
+            };
+          });
+        } else if (this.tableName === 'teams') {
+          const hackathons = getTableData('hackathons');
+          const teamMembers = getTableData('team_members');
+          list = list.map((team: any) => {
+            const hack = hackathons.find((h: any) => h.id === team.hackathon_id);
+            const membersCount = teamMembers.filter((tm: any) => tm.team_id === team.id).length;
+
+            const evaluations = getTableData('evaluations');
+            const teamEvals = evaluations.filter((e: any) => e.team_id === team.id);
+
+            return {
+              ...team,
+              hackathons: hack || null,
+              team_members: [{ count: membersCount }],
+              evaluations: teamEvals
+            };
+          });
+        }
+
+        if (this.singleResult || this.maybeSingleResult) {
+          return list[0] || null;
+        }
+        return list;
       }
     }
 
@@ -666,11 +959,7 @@ export const createClient = () => {
         }
         if (prop === 'from') {
           return (tableName: string) => {
-            if (tableName === 'users' || tableName === 'colleges' || tableName === 'students') {
-              return new MockQueryBuilder(tableName);
-            }
-            const origMethod = Reflect.get(target, prop, receiver);
-            return origMethod.bind(target)(tableName);
+            return new MockQueryBuilder(tableName);
           }
         }
         return Reflect.get(target, prop, receiver)

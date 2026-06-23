@@ -25,7 +25,7 @@ export default function AdminJuryPage() {
     try {
       setLoading(true)
       const { data } = await supabase.from('users').select('*')
-      const jury = (data || []).filter((u: any) => u.role === 'jury')
+      const jury = (data || []).filter((u: any) => u && u.role === 'jury' && u.email && u.full_name)
       setJuryList(jury)
     } catch (e) {
       console.error(e)
@@ -38,14 +38,24 @@ export default function AdminJuryPage() {
     e.preventDefault()
     setActionLoading(true)
 
+    const email = formData.email.trim()
+    const fullName = formData.full_name.trim()
+    const password = formData.password.trim()
+
+    if (!email || !fullName || !password) {
+      alert('All fields are required.')
+      setActionLoading(false)
+      return
+    }
+
     // Insert user into mock store (since NEXT_PUBLIC_MOCK_AUTH is true)
     // We can use supabase.auth.signUp or insert directly into users table
     const { data, error } = await supabase.auth.signUp({
-      email: formData.email,
-      password: formData.password,
+      email: email,
+      password: password,
       options: {
         data: {
-          full_name: formData.full_name,
+          full_name: fullName,
           role: 'jury'
         }
       }
@@ -57,12 +67,13 @@ export default function AdminJuryPage() {
       // Also insert into users table just in case
       await supabase.from('users').insert({
         id: data.user?.id || Math.random().toString(36).substring(2, 9),
-        email: formData.email,
-        full_name: formData.full_name,
+        email: email,
+        full_name: fullName,
         role: 'jury',
         created_at: new Date().toISOString()
       })
       alert('Jury member created successfully!')
+      setFormData({ email: '', full_name: '', password: 'password' })
       setShowAddModal(false)
       loadJury()
     }
@@ -131,7 +142,7 @@ export default function AdminJuryPage() {
                       {j.email}
                     </div>
                   </td>
-                  <td>{new Date(j.created_at).toLocaleDateString()}</td>
+                  <td>{j.created_at && !isNaN(Date.parse(j.created_at)) ? new Date(j.created_at).toLocaleDateString() : 'N/A'}</td>
                   <td>
                     <button onClick={() => handleDeleteJury(j.id)} className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '13px', color: 'var(--danger)', borderColor: 'rgba(239,68,68,0.2)' }} title="Remove Panel Access">
                       <Trash2 size={14} style={{ display: 'inline', marginRight: '4px' }} /> Remove

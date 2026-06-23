@@ -8,9 +8,11 @@ export async function middleware(request: NextRequest) {
     },
   })
 
-  if (process.env.NEXT_PUBLIC_MOCK_AUTH === 'true') {
-    const mockUserCookie = request.cookies.get('mock_user')
-    const mockUser = mockUserCookie ? JSON.parse(decodeURIComponent(mockUserCookie.value)) : null
+  const mockUserCookie = request.cookies.get('mock_user')
+  const mockUser = mockUserCookie ? JSON.parse(decodeURIComponent(mockUserCookie.value)) : null
+  const isMockAuth = process.env.NEXT_PUBLIC_MOCK_AUTH === 'true' || !!mockUserCookie;
+
+  if (isMockAuth) {
     const path = request.nextUrl.pathname
 
     const getDashboardUrl = (r: string) => {
