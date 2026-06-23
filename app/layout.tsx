@@ -6,11 +6,13 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import NotificationBell from '@/components/NotificationBell'
 import { Toaster, toast } from 'sonner'
+import { Menu, X } from 'lucide-react'
 import './globals.css'
 
 function Navbar() {
   const pathname = usePathname()
   const [userRole, setUserRole] = useState<string>('participant')
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const supabase = createClient()
 
   useEffect(() => {
@@ -50,6 +52,11 @@ function Navbar() {
     getUserRole()
   }, [])
 
+  // Close mobile drawer when path changes
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
   const getLinks = () => {
     const baseLinks = [
       { href: '/participant', label: 'Participant' },
@@ -81,77 +88,72 @@ function Navbar() {
   const links = getLinks()
 
   return (
-    <nav style={{
-      background: 'rgba(255, 255, 255, 0.8)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid rgba(2, 132, 199, 0.1)',
-      padding: '16px 24px',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      position: 'sticky',
-      top: 0,
-      zIndex: 999,
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)'
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-        <Link href="/" style={{
-          textDecoration: 'none',
-          fontSize: '20px',
-          fontWeight: 800,
-          background: 'linear-gradient(135deg, #0284c7 0%, #16a34a 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          fontFamily: 'var(--font-display)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px'
-        }}>
-          🎯 HackathonHub
-        </Link>
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-          {links.map((link) => (
-            <Link 
-              key={link.href} 
-              href={link.href}
-              style={{ 
-                color: pathname === link.href ? '#0369a1' : 'var(--text-secondary)', 
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: pathname === link.href ? '600' : '500',
-                transition: 'var(--transition-smooth)',
-                padding: '6px 12px',
-                borderRadius: '6px',
-                background: pathname === link.href ? 'rgba(2, 132, 199, 0.05)' : 'transparent'
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
+    <>
+      <nav className="navbar-container">
+        <div className="navbar-logo-section">
+          <Link href="/" className="navbar-logo-link">
+            🎯 HackathonHub
+          </Link>
+          <div className="navbar-desktop-links">
+            {links.map((link) => (
+              <Link 
+                key={link.href} 
+                href={link.href}
+                className={`navbar-desktop-link ${pathname === link.href ? 'active' : ''}`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-        <NotificationBell />
-        <button
-          onClick={async () => {
-            const supabase = createClient()
-            await supabase.auth.signOut()
-            window.location.href = '/'
-          }}
-          className="btn"
-          style={{ 
-            padding: '8px 16px', 
-            fontSize: '14px',
-            borderColor: 'var(--danger-border)',
-            color: 'var(--danger)',
-            background: 'var(--danger-bg)',
-            fontWeight: 600
-          }}
-        >
-          Logout
-        </button>
-      </div>
-    </nav>
+        <div className="navbar-actions">
+          <NotificationBell />
+          <button
+            onClick={async () => {
+              const supabase = createClient()
+              await supabase.auth.signOut()
+              window.location.href = '/'
+            }}
+            className="btn"
+            style={{ 
+              padding: '6px 12px', 
+              fontSize: '13px',
+              borderColor: 'var(--danger-border)',
+              color: 'var(--danger)',
+              background: 'var(--danger-bg)',
+              fontWeight: 600
+            }}
+          >
+            Logout
+          </button>
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            className="hamburger-btn"
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Drawer */}
+      {isMenuOpen && (
+        <div className="mobile-drawer-overlay" onClick={() => setIsMenuOpen(false)}>
+          <div className="mobile-drawer" onClick={(e) => e.stopPropagation()}>
+            {links.map((link) => (
+              <Link 
+                key={link.href} 
+                href={link.href}
+                className={`mobile-drawer-link ${pathname === link.href ? 'active' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 

@@ -389,7 +389,7 @@ export default function ParticipantDashboard() {
           <h2 style={{ fontSize: '20px', marginBottom: '20px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Users size={20} color="var(--primary)" /> Managed Teams
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div className="responsive-card-grid">
             {myTeams.map((team) => (
               <div key={team.id} className="glass-card" style={{ borderLeft: '4px solid var(--primary)', padding: '24px' }}>
                 <span style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>TEAM MANAGER</span>
@@ -425,7 +425,7 @@ export default function ParticipantDashboard() {
           There are no hackathons currently open for registrations.
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '24px' }}>
+        <div className="responsive-card-grid">
           {hackathons.map((hackathon) => {
             const statusDisplay = getStatusDisplay(hackathon.id)
             const isRegistered = registeredIds.has(hackathon.id)

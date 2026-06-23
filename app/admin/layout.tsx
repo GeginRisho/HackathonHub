@@ -36,9 +36,9 @@ export default function AdminLayout({
   ]
 
   return (
-    <div style={{ display: 'flex', minHeight: 'calc(100vh - 73px)' }}>
+    <div className="admin-layout-container" style={{ display: 'flex', minHeight: 'calc(100vh - 64px)' }}>
       {/* Sidebar Navigation */}
-      <aside style={{
+      <aside className="admin-sidebar" style={{
         width: '260px',
         background: 'rgba(255, 255, 255, 0.6)',
         backdropFilter: 'blur(10px)',
@@ -49,7 +49,7 @@ export default function AdminLayout({
         gap: '8px',
         flexShrink: 0
       }}>
-        <div style={{
+        <div className="admin-sidebar-header" style={{
           padding: '0 12px 16px 12px',
           borderBottom: '1px solid rgba(0, 0, 0, 0.05)',
           marginBottom: '16px'
@@ -59,7 +59,7 @@ export default function AdminLayout({
           </h3>
         </div>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <div className="admin-sidebar-links" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
           {navItems.map((item) => {
             const isActive = pathname === item.href
             return (

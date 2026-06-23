@@ -208,7 +208,7 @@ export default function ResultsPage() {
             <>
               {/* Winners Podium */}
               {winners.length > 0 && (
-                <div style={{ 
+                <div className="winners-podium" style={{ 
                   display: 'flex', 
                   justifyContent: 'center', 
                   alignItems: 'flex-end', 
@@ -229,7 +229,7 @@ export default function ResultsPage() {
 
                   {/* 2nd Place */}
                   {winners.find(w => w.rank === 2) && (
-                    <div style={{ textAlign: 'center', width: '130px' }}>
+                    <div className="podium-step" style={{ textAlign: 'center', width: '130px' }}>
                       <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {rankings.find(r => r.id === winners.find(w => w.rank === 2)?.team_id)?.team_name || 'Team'}
                       </div>
@@ -256,7 +256,7 @@ export default function ResultsPage() {
                   
                   {/* 1st Place */}
                   {winners.find(w => w.rank === 1) && (
-                    <div style={{ textAlign: 'center', width: '150px' }}>
+                    <div className="podium-step" style={{ textAlign: 'center', width: '150px' }}>
                       <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '8px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {rankings.find(r => r.id === winners.find(w => w.rank === 1)?.team_id)?.team_name || 'Team'}
                       </div>
@@ -283,7 +283,7 @@ export default function ResultsPage() {
                   
                   {/* 3rd Place */}
                   {winners.find(w => w.rank === 3) && (
-                    <div style={{ textAlign: 'center', width: '110px' }}>
+                    <div className="podium-step" style={{ textAlign: 'center', width: '110px' }}>
                       <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {rankings.find(r => r.id === winners.find(w => w.rank === 3)?.team_id)?.team_name || 'Team'}
                       </div>

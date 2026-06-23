@@ -237,7 +237,7 @@ export default function JuryDashboard() {
           <h2 style={{ fontSize: '20px', marginBottom: '20px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Trophy size={20} color="var(--warning)" /> Active Evaluation Rounds
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+          <div className="responsive-card-grid">
             {hackathons.length === 0 ? (
               <div className="glass-card" style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '60px 40px', color: 'var(--text-secondary)' }}>
                 No active hackathons available for evaluation.

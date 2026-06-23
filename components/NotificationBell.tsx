@@ -93,7 +93,7 @@ export default function NotificationBell() {
       </button>
 
       {showDropdown && (
-        <div style={{
+        <div className="notification-dropdown" style={{
           position: 'absolute',
           top: '40px',
           right: '0',

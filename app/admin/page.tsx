@@ -317,7 +317,7 @@ export default function AdminDashboard() {
         <div className="glass-card fade-in" style={{ marginBottom: '40px', borderLeft: '4px solid var(--primary)' }}>
           <h2 style={{ marginBottom: '24px', fontSize: '22px' }}>Configure New Hackathon</h2>
           <form onSubmit={handleSubmit}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+            <div className="responsive-grid-2" style={{ marginBottom: '20px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, fontSize: '14px', color: 'var(--text-secondary)' }}>Hackathon Name *</label>
                 <input 
@@ -354,7 +354,7 @@ export default function AdminDashboard() {
               />
             </div>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '20px' }}>
+            <div className="responsive-grid-3" style={{ marginBottom: '20px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, fontSize: '14px', color: 'var(--text-secondary)' }}>Start Date & Time *</label>
                 <input 
@@ -390,7 +390,7 @@ export default function AdminDashboard() {
               </div>
             </div>
             
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '28px' }}>
+            <div className="responsive-grid-2" style={{ marginBottom: '28px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, fontSize: '14px', color: 'var(--text-secondary)' }}>Registration Fee ($)</label>
                 <input 

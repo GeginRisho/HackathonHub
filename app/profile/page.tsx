@@ -145,7 +145,7 @@ export default function ProfilePage() {
           Personal Information
         </h2>
         
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <div className="responsive-grid-2" style={{ marginBottom: '20px' }}>
           <div>
             <label style={{ display: 'block', fontWeight: 600, fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '8px' }}>
               <User size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'text-bottom' }} /> Full Name
@@ -206,7 +206,7 @@ export default function ProfilePage() {
           />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '32px' }}>
+        <div className="responsive-grid-2" style={{ marginBottom: '32px' }}>
           <div>
             <label style={{ display: 'block', fontWeight: 600, fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '8px' }}>
               <GraduationCap size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'text-bottom' }} /> Major / Department

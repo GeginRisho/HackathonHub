@@ -237,7 +237,7 @@ export default function CertificatesPage() {
           <p style={{ color: 'var(--text-secondary)' }}>Certificates are dispatched automatically when organizers announce winning placements.</p>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+        <div className="responsive-card-grid">
           {myCertificates.map((cert) => {
             const isFirst = cert.rank === 1
             const isSecond = cert.rank === 2

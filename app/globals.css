@@ -272,3 +272,290 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1000;
   animation: fadeIn 0.2s ease-out;
 }
+
+/* ==========================================================================
+   Mobile Responsiveness & Responsive Layout Utilities
+   ========================================================================== */
+
+/* Navbar responsive structure */
+.navbar-container {
+  height: 64px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(2, 132, 199, 0.1);
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.navbar-logo-section {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 100%;
+}
+
+.navbar-logo-link {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0284c7 0%, #16a34a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fillColor: transparent;
+  font-family: var(--font-display);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-desktop-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar-desktop-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.navbar-desktop-link.active {
+  color: #0369a1;
+  font-weight: 600;
+  background: rgba(2, 132, 199, 0.05);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+}
+
+.hamburger-btn:hover {
+  background: rgba(2, 132, 199, 0.05);
+}
+
+/* Mobile Drawer Overlay */
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 998;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.mobile-drawer {
+  width: 280px;
+  height: 100%;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border-color);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: -10px 0 30px rgba(15, 23, 42, 0.05);
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-drawer-link {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 15px;
+  transition: var(--transition-smooth);
+}
+
+.mobile-drawer-link:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.mobile-drawer-link.active {
+  background: rgba(2, 132, 199, 0.08);
+  color: #0369a1;
+  font-weight: 600;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Mobile Styles Override */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 16px;
+  }
+
+  .navbar-desktop-links {
+    display: none !important;
+  }
+
+  .hamburger-btn {
+    display: block !important;
+  }
+
+  .premium-container {
+    padding: 20px 16px !important;
+  }
+
+  .glass-card {
+    padding: 24px 16px !important;
+  }
+
+  /* Force table scrolling and prevent squeezing on small viewports */
+  .premium-table {
+    min-width: 650px !important;
+  }
+
+  /* Make modal content cards take full width */
+  .modal-overlay > .glass-card {
+    width: 95% !important;
+    max-height: 90vh !important;
+    padding: 24px 16px !important;
+  }
+}
+
+/* Specific dashboard and page optimizations for smaller viewports */
+@media (max-width: 500px) {
+  /* Results Podium alignment */
+  .winners-podium {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+    padding: 24px 16px !important;
+  }
+
+  .podium-step {
+    width: 140px !important;
+  }
+
+  /* Force action button wrapping */
+  .flex-mobile-wrap {
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .flex-mobile-wrap > button,
+  .flex-mobile-wrap > a {
+    width: 100% !important;
+  }
+}
+
+/* ==========================================================================
+   Responsive Grid & Notification / Admin Console Overrides
+   ========================================================================== */
+
+/* Responsive Grid Columns */
+.responsive-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.responsive-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.responsive-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .responsive-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+  .responsive-grid-3 {
+    grid-template-columns: 1fr !important;
+  }
+  .responsive-card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+
+  /* Admin Console Sidebar horizontal scroll top-navigation on mobile */
+  .admin-layout-container {
+    flex-direction: column !important;
+  }
+  
+  .admin-sidebar {
+    width: 100% !important;
+    flex-direction: row !important;
+    padding: 10px 16px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(2, 132, 199, 0.1) !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .admin-sidebar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  .admin-sidebar-header {
+    display: none !important;
+  }
+  
+  .admin-sidebar-links {
+    flex-direction: row !important;
+    gap: 8px !important;
+  }
+
+  /* Keep notification dropdown bounded inside mobile screens */
+  .notification-dropdown {
+    width: calc(100vw - 32px) !important;
+    max-width: 350px !important;
+    right: -80px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Logo and actions spacing on narrow screens */
+  .navbar-logo-link {
+    font-size: 16px !important;
+  }
+  
+  .navbar-actions {
+    gap: 8px !important;
+  }
+
+  .responsive-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
