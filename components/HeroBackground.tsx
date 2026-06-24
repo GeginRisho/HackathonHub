@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 
 export default function HeroBackground() {
   const [animationsPaused, setAnimationsPaused] = useState<boolean>(false)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
   // Load preferences from localStorage on mount
   useEffect(() => {
@@ -13,18 +14,53 @@ export default function HeroBackground() {
     }
   }, [])
 
+  // Mouse move listener for parallax effect
+  useEffect(() => {
+    if (animationsPaused) return
+
+    const handleMouseMove = (e: MouseEvent) => {
+      // Normalized coordinates (-0.5 to 0.5)
+      const x = (e.clientX / window.innerWidth) - 0.5
+      const y = (e.clientY / window.innerHeight) - 0.5
+      setMousePos({ x, y })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [animationsPaused])
+
   const toggleAnimations = () => {
     const nextState = !animationsPaused
     setAnimationsPaused(nextState)
     localStorage.setItem('hero-bg-animations-paused', String(nextState))
+    if (nextState) {
+      setMousePos({ x: 0, y: 0 }) // Reset position when paused
+    }
   }
 
   return (
     <div className={`hero-bg-container-bright ${animationsPaused ? 'animations-paused' : ''}`}>
-      {/* 1. Futuristic Glowing Mesh Blobs */}
-      <div className="glowing-blob-bright blob-purple" />
-      <div className="glowing-blob-bright blob-blue" />
-      <div className="glowing-blob-bright blob-cyan" />
+      {/* 1. Futuristic Glowing Mesh Blobs (with Mouse Parallax) */}
+      <div 
+        className="glowing-blob-bright blob-purple" 
+        style={{
+          transform: `translate(${mousePos.x * 35}px, ${mousePos.y * 35}px)`
+        }} 
+      />
+      <div 
+        className="glowing-blob-bright blob-blue" 
+        style={{
+          transform: `translate(${mousePos.x * -45}px, ${mousePos.y * -45}px)`
+        }} 
+      />
+      <div 
+        className="glowing-blob-bright blob-cyan" 
+        style={{
+          transform: `translate(${mousePos.x * 20}px, ${mousePos.y * 20}px)`
+        }} 
+      />
 
       {/* 8. Moving Light Beams */}
       <div className="light-beam beam-1" />
@@ -41,10 +77,16 @@ export default function HeroBackground() {
         <rect width="100%" height="100%" fill="url(#tech-grid)" />
       </svg>
 
-      {/* 3. Floating Geometric Shapes */}
-      <div className="hero-bg-layer">
+      {/* 3. Floating Geometric Shapes (with Mouse Parallax) */}
+      <div 
+        className="hero-bg-layer"
+        style={{
+          transform: `translate(${mousePos.x * 15}px, ${mousePos.y * 15}px)`,
+          transition: 'transform 0.15s cubic-bezier(0.1, 0.8, 0.2, 1)'
+        }}
+      >
         {/* Shape 1: Tech Hexagon */}
-        <svg className="floating-shape shape-1" width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: '#7c3aed' }}>
+        <svg className="floating-shape shape-1" width="80" height="80" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: '#a855f7' }}>
           <polygon points="50,5 92,29 92,71 50,95 8,71 8,29" strokeDasharray="3 3" />
           <circle cx="50" cy="50" r="15" stroke="currentColor" strokeWidth="1" />
         </svg>
@@ -57,7 +99,7 @@ export default function HeroBackground() {
         </svg>
 
         {/* Shape 3: Code Brackets */}
-        <svg className="floating-shape shape-3" width="50" height="50" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: '#2563eb' }}>
+        <svg className="floating-shape shape-3" width="50" height="50" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: '#3b82f6' }}>
           <path d="M35,25 L15,25 L15,75 L35,75" />
           <path d="M65,25 L85,25 L85,75 L65,75" />
           <circle cx="50" cy="50" r="6" fill="currentColor" fillOpacity="0.3" />
@@ -73,7 +115,7 @@ export default function HeroBackground() {
       </div>
 
       {/* 4. Moving Network Connection Lines */}
-      <svg className="network-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" fill="none" color="#7c3aed">
+      <svg className="network-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" fill="none" color="#a855f7">
         {/* Connection Lines with Dash Animations */}
         <line x1="150" y1="100" x2="350" y2="180" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
         <line x1="350" y1="180" x2="250" y2="350" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
@@ -85,10 +127,10 @@ export default function HeroBackground() {
         
         {/* Nodes (Glowing Points) */}
         <circle cx="150" cy="100" r="3" fill="#06b6d4" className="network-node" />
-        <circle cx="350" cy="180" r="3.5" fill="#7c3aed" className="network-node" />
-        <circle cx="250" cy="350" r="3" fill="#2563eb" className="network-node" />
+        <circle cx="350" cy="180" r="3.5" fill="#a855f7" className="network-node" />
+        <circle cx="250" cy="350" r="3" fill="#3b82f6" className="network-node" />
         <circle cx="550" cy="150" r="4" fill="#10b981" className="network-node" />
-        <circle cx="700" cy="320" r="3.5" fill="#7c3aed" className="network-node" />
+        <circle cx="700" cy="320" r="3.5" fill="#a855f7" className="network-node" />
         <circle cx="850" cy="200" r="3" fill="#06b6d4" className="network-node" />
         <circle cx="600" cy="450" r="4.5" fill="#10b981" className="network-node" />
       </svg>
@@ -106,9 +148,15 @@ export default function HeroBackground() {
       </div>
 
       {/* 6. Subtle Digital Wave Effects */}
-      <div className="wave-layer" style={{ opacity: 0.12 }}>
+      <div 
+        className="wave-layer" 
+        style={{ 
+          opacity: 0.12,
+          transform: `translateY(${mousePos.y * 10}px)`
+        }}
+      >
         <svg className="digital-wave wave-1" viewBox="0 0 2880 200" preserveAspectRatio="none">
-          <path d="M 0 110 Q 360 60, 720 110 T 1440 110 Q 1800 60, 2160 110 T 2880 110 L 2880 200 L 0 200 Z" fill="#7c3aed" />
+          <path d="M 0 110 Q 360 60, 720 110 T 1440 110 Q 1800 60, 2160 110 T 2880 110 L 2880 200 L 0 200 Z" fill="#a855f7" />
         </svg>
         <svg className="digital-wave wave-2" viewBox="0 0 2880 200" preserveAspectRatio="none">
           <path d="M 0 130 Q 360 85, 720 130 T 1440 130 Q 1800 85, 2160 130 T 2880 130 L 2880 200 L 0 200 Z" fill="#06b6d4" />

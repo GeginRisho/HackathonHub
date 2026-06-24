@@ -90,21 +90,19 @@ function Navbar() {
   return (
     <>
       <nav className={`navbar-container ${pathname === '/' ? 'navbar-landing-bright' : ''}`}>
-        <div className="navbar-logo-section">
-          <Link href="/" className="navbar-logo-link">
-            🎯 HackathonHub
-          </Link>
-          <div className="navbar-desktop-links">
-            {links.map((link) => (
-              <Link 
-                key={link.href} 
-                href={link.href}
-                className={`navbar-desktop-link ${pathname === link.href ? 'active' : ''}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        <Link href="/" className="navbar-logo-link">
+          🎯 HackathonHub
+        </Link>
+        <div className="navbar-desktop-links">
+          {links.map((link) => (
+            <Link 
+              key={link.href} 
+              href={link.href}
+              className={`navbar-desktop-link ${pathname === link.href ? 'active' : ''}`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
         <div className="navbar-actions">
           <NotificationBell />
