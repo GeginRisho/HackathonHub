@@ -136,8 +136,8 @@ function Navbar() {
 
       {/* Mobile Drawer */}
       {isMenuOpen && (
-        <div className="mobile-drawer-overlay" onClick={() => setIsMenuOpen(false)}>
-          <div className="mobile-drawer" onClick={(e) => e.stopPropagation()}>
+        <div className={`mobile-drawer-overlay ${pathname === '/' ? 'mobile-drawer-overlay-landing-bright' : ''}`} onClick={() => setIsMenuOpen(false)}>
+          <div className={`mobile-drawer ${pathname === '/' ? 'mobile-drawer-landing-bright' : ''}`} onClick={(e) => e.stopPropagation()}>
             {links.map((link) => (
               <Link 
                 key={link.href} 
@@ -160,6 +160,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.alert = (msg) => {
@@ -179,7 +181,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={pathname === '/' ? 'body-landing-dark' : ''}>
         <Navbar />
         <main>{children}</main>
         <Toaster position="top-right" richColors />

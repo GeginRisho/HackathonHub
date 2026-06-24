@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import HeroBackground from '@/components/HeroBackground'
 import { 
   Trophy, 
@@ -13,87 +13,12 @@ import {
   Award, 
   ArrowRight, 
   Box,
-  TrendingUp,
-  School,
-  Gavel,
-  Send,
-  Sliders,
-  LineChart
+  TrendingUp
 } from 'lucide-react'
-
-// Custom lightweight high-performance CountUp component using requestAnimationFrame
-function CountUp({ end, duration = 2000 }: { end: number; duration?: number }) {
-  const [count, setCount] = useState(0)
-  
-  useEffect(() => {
-    let startTimestamp: number | null = null
-    let animationFrameId: number
-    
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1)
-      setCount(Math.floor(progress * end))
-      if (progress < 1) {
-        animationFrameId = window.requestAnimationFrame(step)
-      }
-    }
-    
-    animationFrameId = window.requestAnimationFrame(step)
-    return () => window.cancelAnimationFrame(animationFrameId)
-  }, [end, duration])
-  
-  return <>{count.toLocaleString()}</>
-}
-
-// Custom lightweight IntersectionObserver React wrapper for 60fps fade-up scroll animations
-function RevealOnScroll({ children }: { children: React.ReactNode }) {
-  const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold: 0.15 }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
-      }
-    }
-  }, [])
-
-  return (
-    <div
-      ref={ref}
-      className={`reveal-section ${isVisible ? 'is-visible' : ''}`}
-    >
-      {children}
-    </div>
-  )
-}
 
 export default function Home() {
   return (
-    <div className="landing-bright-wrapper" style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      textAlign: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-      padding: 0
-    }}>
+    <div className="landing-bright-wrapper">
       <HeroBackground />
 
       {/* Hero Section Container */}
@@ -162,82 +87,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* Statistics Section (Animated Glass Cards with Icons & Count-Ups) */}
-      <RevealOnScroll>
-        <div style={{ width: '100%', maxWidth: '1020px', position: 'relative', zIndex: 2, marginBottom: '120px', padding: '0 20px', boxSizing: 'border-box' }}>
-          <h2 className="section-title">Global Platform Metrics</h2>
-          <p className="section-subtitle">Scale operations across hundreds of developer leagues, universities, and panel networks.</p>
-          <div className="stats-grid">
-            <div className="glass-card-saas neon-border-purple" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Users size={36} style={{ color: '#a855f7', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #a855f7)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#a855f7', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(168, 85, 247, 0.3)' }}>
-                <CountUp end={10000} />+
-              </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Active Developers</p>
-            </div>
-            <div className="glass-card-saas neon-border-cyan" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Trophy size={36} style={{ color: '#06b6d4', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #06b6d4)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#06b6d4', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(6, 182, 212, 0.3)' }}>
-                <CountUp end={500} />+
-              </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Events Hosted</p>
-            </div>
-            <div className="glass-card-saas neon-border-blue" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <School size={36} style={{ color: '#3b82f6', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #3b82f6)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#3b82f6', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(59, 130, 246, 0.3)' }}>
-                <CountUp end={200} />+
-              </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Colleges Enrolled</p>
-            </div>
-            <div className="glass-card-saas neon-border-emerald" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Gavel size={36} style={{ color: '#10b981', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #10b981)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#10b981', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(16, 185, 129, 0.3)' }}>
-                <CountUp end={50} />+
-              </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Judges Panel</p>
-            </div>
-          </div>
-        </div>
-      </RevealOnScroll>
-
-      {/* Features Grid Section (SaaS Glassmorphism Icon Highlights) */}
-      <RevealOnScroll>
-        <div style={{ width: '100%', maxWidth: '1100px', position: 'relative', zIndex: 2, marginBottom: '120px', padding: '0 20px', boxSizing: 'border-box' }}>
-          <h2 className="section-title">Platform Features</h2>
-          <p className="section-subtitle">Fully automated pipelines constructed for high performance developer iterations.</p>
-          <div className="features-grid">
-            <div className="premium-feature-card glass-card-saas neon-border-purple">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#a855f7' }}>
-                <Send size={24} />
-              </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Project Submission</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Push project repositories, slide decks, and demo video references directly to the registry matrix.</p>
-            </div>
-            <div className="premium-feature-card glass-card-saas neon-border-cyan">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(6, 182, 212, 0.15)', color: '#06b6d4' }}>
-                <Sliders size={24} />
-              </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Jury Evaluation</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Conduct weighted grading assessments utilizing slider score panels with inline logging comments.</p>
-            </div>
-            <div className="premium-feature-card glass-card-saas neon-border-blue">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#3b82f6' }}>
-                <LineChart size={24} />
-              </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Real-Time Results</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Leaderboard lists synchronize and rank team submissions instantly upon grading completions.</p>
-            </div>
-            <div className="premium-feature-card glass-card-saas neon-border-emerald">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#10b981' }}>
-                <Award size={24} />
-              </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Digital Certificates</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Generate secure graduation credentials immediately download-ready from member profiles.</p>
-            </div>
-          </div>
-        </div>
-      </RevealOnScroll>
     </div>
   )
 }

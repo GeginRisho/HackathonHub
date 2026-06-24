@@ -479,7 +479,12 @@ h1, h2, h3, h4, h5, h6 {
 /* Mobile Styles Override */
 @media (max-width: 768px) {
   .navbar-container {
-    padding: 0 16px;
+    height: 56px !important;
+    padding: 0 12px !important;
+  }
+
+  .mobile-drawer-overlay {
+    top: 56px !important;
   }
 
   .navbar-desktop-links {
@@ -612,11 +617,17 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 480px) {
   /* Logo and actions spacing on narrow screens */
   .navbar-logo-link {
-    font-size: 16px !important;
+    font-size: 15px !important;
+    gap: 4px !important;
   }
   
   .navbar-actions {
-    gap: 8px !important;
+    gap: 6px !important;
+  }
+  
+  .navbar-actions .btn {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
   }
 
   .responsive-card-grid {
@@ -1220,14 +1231,56 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Path-based Bright Navigation Bar Overlay */
 .navbar-landing-bright {
-  background: rgba(13, 9, 39, 0.25) !important;
-  border-bottom: 1px solid rgba(124, 58, 237, 0.2) !important;
-  box-shadow: 
-    0 4px 30px rgba(0, 0, 0, 0.4),
-    0 1px 0 rgba(255, 255, 255, 0.05),
-    0 10px 30px -10px rgba(124, 58, 237, 0.1) !important;
+  background: rgba(8, 10, 30, 0.85) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.25) !important;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(139, 92, 246, 0.15) !important;
+}
+
+body.body-landing-dark {
+  background: #0c0827 !important;
+}
+
+.hero-bg-container-bright {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mobile-drawer-landing-bright {
+  background: rgba(8, 10, 30, 0.95) !important;
+  border-left: 1px solid rgba(139, 92, 246, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.mobile-drawer-landing-bright .mobile-drawer-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.mobile-drawer-landing-bright .mobile-drawer-link:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+
+.mobile-drawer-landing-bright .mobile-drawer-link.active {
+  background: rgba(139, 92, 246, 0.2) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.mobile-drawer-overlay-landing-bright {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
 }
 
 .navbar-landing-bright .navbar-logo-link {
@@ -1270,8 +1323,24 @@ h1, h2, h3, h4, h5, h6 {
 .landing-bright-wrapper {
   background-color: #0c0827 !important; /* Rich vibrant deep purple-indigo base to support highly vibrant colors */
   color: #ffffff !important;
+  height: 100vh;
   min-height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden !important;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .landing-bright-wrapper {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+  }
 }
 
 .landing-bright-wrapper .section-title {
@@ -1715,8 +1784,8 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   .hero-section-container {
-    height: calc(100dvh - 64px) !important;
-    min-height: calc(100dvh - 64px) !important;
+    height: calc(100dvh - 56px) !important;
+    min-height: calc(100dvh - 56px) !important;
   }
   
   .hero-main-card {
