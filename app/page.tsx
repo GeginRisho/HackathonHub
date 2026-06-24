@@ -1,3 +1,5 @@
+import HeroBackground from '@/components/HeroBackground'
+
 export default function Home() {
   return (
     <div style={{
@@ -7,9 +9,12 @@ export default function Home() {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '40px 20px',
-      textAlign: 'center'
+      textAlign: 'center',
+      position: 'relative',
+      overflow: 'hidden'
     }} className="fade-in">
-      <div className="glass-card" style={{ maxWidth: '600px', width: '100%', padding: '48px 32px' }}>
+      <HeroBackground />
+      <div className="glass-card" style={{ maxWidth: '600px', width: '100%', padding: '48px 32px', position: 'relative', zIndex: 1 }}>
         <span style={{ 
           fontSize: '14px', 
           fontWeight: 700, 
