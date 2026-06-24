@@ -1323,7 +1323,6 @@ body.body-landing-dark {
 .landing-bright-wrapper {
   background-color: #0c0827 !important; /* Rich vibrant deep purple-indigo base to support highly vibrant colors */
   color: #ffffff !important;
-  height: 100vh;
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -1331,14 +1330,13 @@ body.body-landing-dark {
   align-items: center;
   text-align: center;
   position: relative;
-  overflow: hidden !important;
+  overflow-x: hidden !important;
   padding: 0;
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .landing-bright-wrapper {
-    height: 100dvh !important;
     min-height: 100dvh !important;
   }
 }
