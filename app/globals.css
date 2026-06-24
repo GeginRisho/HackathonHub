@@ -1170,3 +1170,232 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ==========================================================================
+   Phase 3 - Dark Futuristic SaaS Platform Redesign
+   ========================================================================== */
+
+/* Path-based Dark Navigation Bar Overlay */
+.navbar-landing-dark {
+  background: rgba(5, 8, 22, 0.65) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
+}
+
+.navbar-landing-dark .navbar-logo-link {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.navbar-landing-dark .navbar-desktop-link {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.navbar-landing-dark .navbar-desktop-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.navbar-landing-dark .navbar-desktop-link.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.09) !important;
+}
+
+.navbar-landing-dark .navbar-desktop-link::after {
+  background: linear-gradient(90deg, #7c3aed, #06b6d4) !important;
+}
+
+.navbar-landing-dark .hamburger-btn {
+  color: #ffffff !important;
+}
+
+/* Landing Section Dark Mode Container */
+.landing-dark-wrapper {
+  background-color: #050816 !important;
+  color: #ffffff !important;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.landing-dark-wrapper .section-title {
+  background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.landing-dark-wrapper .section-subtitle {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Glassmorphism Dark Card */
+.glass-card-dark {
+  background: rgba(10, 15, 30, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  border-radius: 24px;
+}
+
+.glass-card-dark:hover {
+  border-color: rgba(124, 58, 237, 0.3) !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(124, 58, 237, 0.15) !important;
+}
+
+/* Neon Borders & Highlights */
+.neon-border-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  box-shadow: 0 25px 50px -15px rgba(6, 182, 212, 0.15), 0 0 25px rgba(6, 182, 212, 0.1) !important;
+}
+
+.neon-border-purple:hover {
+  border-color: rgba(124, 58, 237, 0.35) !important;
+  box-shadow: 0 25px 50px -15px rgba(124, 58, 237, 0.15), 0 0 25px rgba(124, 58, 237, 0.1) !important;
+}
+
+.neon-border-blue:hover {
+  border-color: rgba(37, 99, 235, 0.35) !important;
+  box-shadow: 0 25px 50px -15px rgba(37, 99, 235, 0.15), 0 0 25px rgba(37, 99, 235, 0.1) !important;
+}
+
+.neon-border-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 25px 50px -15px rgba(16, 185, 129, 0.15), 0 0 25px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* Glowing Blobs */
+.glowing-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.22;
+  mix-blend-mode: screen;
+  will-change: transform;
+  animation: blobShift 22s infinite ease-in-out alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-purple {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #7c3aed 0%, rgba(124, 58, 237, 0) 70%);
+  top: -10%;
+  left: 5%;
+  animation-duration: 26s;
+}
+
+.blob-blue {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #2563eb 0%, rgba(37, 99, 235, 0) 70%);
+  bottom: -15%;
+  right: 10%;
+  animation-duration: 30s;
+  animation-delay: -5s;
+}
+
+.blob-cyan {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, #06b6d4 0%, rgba(6, 182, 212, 0) 70%);
+  top: 35%;
+  right: 20%;
+  animation-duration: 24s;
+  animation-delay: -10s;
+}
+
+@keyframes blobShift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50px, 60px) scale(1.15);
+  }
+  100% {
+    transform: translate(40px, -30px) scale(0.9);
+  }
+}
+
+/* SVG grid lines */
+.grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Light particles drifting */
+.light-particle {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.3;
+  will-change: transform, opacity;
+  animation: driftParticle 15s infinite linear;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes driftParticle {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-200px) translateX(50px);
+    opacity: 0;
+  }
+}
+
+/* Float Animation for Hero Card */
+.float-hero-card {
+  animation: floatHeroCard 8s infinite ease-in-out alternate;
+}
+
+@keyframes floatHeroCard {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Glowing Neon drop-shadow filter for Tech Icons */
+.floating-tech-icon {
+  filter: drop-shadow(0 0 8px currentColor);
+  opacity: 0.32;
+  transition: opacity var(--transition-smooth);
+}
+
+.floating-tech-icon:hover {
+  opacity: 0.8 !important;
+  filter: drop-shadow(0 0 14px currentColor);
+}
+
+/* Primary Button Glow Effect */
+.btn-cta-primary-glow {
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.4), 0 8px 24px rgba(79, 70, 229, 0.3) !important;
+}
+
+.btn-cta-primary-glow:hover {
+  box-shadow: 0 0 35px rgba(6, 182, 212, 0.6), 0 12px 30px rgba(79, 70, 229, 0.5) !important;
+}
+
+/* Text glow */
+.text-glow-purple {
+  text-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+}

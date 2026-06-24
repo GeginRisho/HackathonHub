@@ -89,7 +89,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar-container">
+      <nav className={`navbar-container ${pathname === '/' ? 'navbar-landing-dark' : ''}`}>
         <div className="navbar-logo-section">
           <Link href="/" className="navbar-logo-link">
             🎯 HackathonHub
