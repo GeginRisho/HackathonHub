@@ -191,8 +191,8 @@ export default function AdminDashboard() {
 
       {/* Stats Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ background: 'rgba(99, 102, 241, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--primary)' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ background: 'rgba(79, 70, 229, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--primary)' }}>
             <Layers size={24} />
           </div>
           <div>
@@ -200,7 +200,7 @@ export default function AdminDashboard() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Total Hackathons</p>
           </div>
         </div>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--success)' }}>
             <Play size={24} />
           </div>
@@ -209,7 +209,7 @@ export default function AdminDashboard() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Active Hackathons</p>
           </div>
         </div>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--warning)' }}>
             <Calendar size={24} />
           </div>
@@ -218,8 +218,8 @@ export default function AdminDashboard() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Pending Approvals</p>
           </div>
         </div>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ background: 'rgba(168, 85, 247, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--secondary)' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ background: 'rgba(6, 182, 212, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--secondary)' }}>
             <Users size={24} />
           </div>
           <div>

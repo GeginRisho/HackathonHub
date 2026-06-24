@@ -304,8 +304,8 @@ export default function CollegeDashboard() {
 
       {/* Stats Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px', marginBottom: '40px' }}>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ background: 'rgba(99, 102, 241, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--primary)' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ background: 'rgba(79, 70, 229, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--primary)' }}>
             <Users size={24} />
           </div>
           <div>
@@ -313,7 +313,7 @@ export default function CollegeDashboard() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Total Students</p>
           </div>
         </div>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--success)' }}>
             <CheckCircle size={24} />
           </div>
@@ -322,7 +322,7 @@ export default function CollegeDashboard() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Registrations</p>
           </div>
         </div>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ background: 'rgba(245, 158, 11, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--warning)' }}>
             <AlertCircle size={24} />
           </div>
@@ -331,8 +331,8 @@ export default function CollegeDashboard() {
             <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>Pending Approvals</p>
           </div>
         </div>
-        <div className="glass-card" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ background: 'rgba(236, 72, 153, 0.1)', padding: '12px', borderRadius: '12px', color: '#db2777' }}>
+        <div className="glass-card stat-card-gradient" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ background: 'rgba(6, 182, 212, 0.1)', padding: '12px', borderRadius: '12px', color: 'var(--secondary)' }}>
             <BookOpen size={24} />
           </div>
           <div>

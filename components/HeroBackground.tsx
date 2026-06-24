@@ -60,7 +60,7 @@ export default function HeroBackground() {
       </div>
 
       {/* 3. Moving Network Connection Lines */}
-      <svg className="network-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" fill="none">
+      <svg className="network-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" fill="none" color="var(--primary)">
         {/* Connection Lines with Dash Animations */}
         <line x1="150" y1="100" x2="350" y2="180" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
         <line x1="350" y1="180" x2="250" y2="350" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />

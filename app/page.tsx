@@ -27,11 +27,15 @@ export default function Home() {
           Next-Generation Portal
         </span>
         <h1 style={{ 
-          fontSize: '42px', 
+          fontSize: '48px', 
           marginBottom: '16px',
-          color: 'var(--text-primary)',
           fontFamily: 'var(--font-display)',
-          fontWeight: 800
+          fontWeight: 800,
+          background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          display: 'inline-block',
+          letterSpacing: '-0.03em'
         }}>
           🎯 Hackathon Manager
         </h1>
