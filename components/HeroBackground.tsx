@@ -124,6 +124,9 @@ export default function HeroBackground() {
         <line x1="700" y1="320" x2="850" y2="200" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
         <line x1="700" y1="320" x2="600" y2="450" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
         <line x1="250" y1="350" x2="600" y2="450" stroke="currentColor" strokeWidth="1.2" className="network-pulse-line" />
+        <line x1="250" y1="350" x2="100" y2="480" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
+        <line x1="850" y1="200" x2="900" y2="380" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
+        <line x1="550" y1="150" x2="450" y2="50" stroke="currentColor" strokeWidth="1" className="network-pulse-line" />
         
         {/* Nodes (Glowing Points) */}
         <circle cx="150" cy="100" r="3" fill="#06b6d4" className="network-node" />
@@ -133,6 +136,9 @@ export default function HeroBackground() {
         <circle cx="700" cy="320" r="3.5" fill="#a855f7" className="network-node" />
         <circle cx="850" cy="200" r="3" fill="#06b6d4" className="network-node" />
         <circle cx="600" cy="450" r="4.5" fill="#10b981" className="network-node" />
+        <circle cx="100" cy="480" r="3.5" fill="#a855f7" className="network-node" />
+        <circle cx="900" cy="380" r="4" fill="#06b6d4" className="network-node" />
+        <circle cx="450" cy="50" r="3" fill="#3b82f6" className="network-node" />
       </svg>
 
       {/* 5. Drifting Light Particles */}
@@ -145,6 +151,26 @@ export default function HeroBackground() {
         <div className="light-particle" style={{ width: '7px', height: '7px', top: '15%', left: '60%', animationDelay: '-3s' }} />
         <div className="light-particle" style={{ width: '3px', height: '3px', top: '85%', left: '50%', animationDelay: '-8s' }} />
         <div className="light-particle" style={{ width: '5px', height: '5px', top: '45%', left: '90%', animationDelay: '-4s' }} />
+        <div className="light-particle" style={{ width: '4px', height: '4px', top: '25%', left: '45%', animationDelay: '-9s' }} />
+        <div className="light-particle" style={{ width: '6px', height: '6px', top: '60%', left: '20%', animationDelay: '-7s' }} />
+        <div className="light-particle" style={{ width: '5px', height: '5px', top: '80%', left: '75%', animationDelay: '-11s' }} />
+        <div className="light-particle" style={{ width: '3px', height: '3px', top: '10%', left: '85%', animationDelay: '-13s' }} />
+      </div>
+
+      {/* 9. Twinkling Stars (with Mouse Parallax) */}
+      <div 
+        className="hero-bg-layer"
+        style={{
+          transform: `translate(${mousePos.x * 8}px, ${mousePos.y * 8}px)`,
+          transition: 'transform 0.2s cubic-bezier(0.1, 0.8, 0.2, 1)'
+        }}
+      >
+        <div className="star-particle" style={{ width: '3px', height: '3px', top: '15%', left: '25%', animationDelay: '0s' }} />
+        <div className="star-particle" style={{ width: '2px', height: '2px', top: '40%', left: '75%', animationDelay: '-1.5s' }} />
+        <div className="star-particle" style={{ width: '4px', height: '4px', top: '70%', left: '18%', animationDelay: '-3s' }} />
+        <div className="star-particle" style={{ width: '3px', height: '3px', top: '85%', left: '80%', animationDelay: '-4.5s' }} />
+        <div className="star-particle" style={{ width: '2px', height: '2px', top: '30%', left: '50%', animationDelay: '-2s' }} />
+        <div className="star-particle" style={{ width: '3px', height: '3px', top: '65%', left: '88%', animationDelay: '-5.5s' }} />
       </div>
 
       {/* 6. Subtle Digital Wave Effects */}

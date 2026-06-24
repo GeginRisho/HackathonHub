@@ -47,6 +47,8 @@ export default function Home() {
 
         {/* Premium Vibrant Glassmorphism Hero Card */}
         <div className="glass-card-saas float-hero-card hero-main-card" style={{ maxWidth: '640px', padding: '50px 40px', position: 'relative', zIndex: 10, boxSizing: 'border-box' }}>
+          {/* Glass Sweep Reflection effect */}
+          <div className="glass-sweep-reflection" />
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '20px', background: 'rgba(99, 102, 241, 0.12)', border: '1px solid rgba(99, 102, 241, 0.25)', padding: '6px 16px', borderRadius: '30px' }}>
             <Sparkles size={14} style={{ color: '#06b6d4' }} />
             <span style={{ 
