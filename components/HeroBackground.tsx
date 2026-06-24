@@ -20,18 +20,22 @@ export default function HeroBackground() {
   }
 
   return (
-    <div className={`hero-bg-container ${animationsPaused ? 'animations-paused' : ''}`} style={{ background: '#050816' }}>
+    <div className={`hero-bg-container-bright ${animationsPaused ? 'animations-paused' : ''}`}>
       {/* 1. Futuristic Glowing Mesh Blobs */}
-      <div className="glowing-blob blob-purple" />
-      <div className="glowing-blob blob-blue" />
-      <div className="glowing-blob blob-cyan" />
+      <div className="glowing-blob-bright blob-purple" />
+      <div className="glowing-blob-bright blob-blue" />
+      <div className="glowing-blob-bright blob-cyan" />
+
+      {/* 8. Moving Light Beams */}
+      <div className="light-beam beam-1" />
+      <div className="light-beam beam-2" />
 
       {/* 2. Technical Grid Overlay */}
       <svg className="grid-overlay" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="tech-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255, 255, 255, 0.04)" strokeWidth="1" />
-            <circle cx="0" cy="0" r="1.5" fill="rgba(255, 255, 255, 0.15)" />
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255, 255, 255, 0.06)" strokeWidth="1" />
+            <circle cx="0" cy="0" r="1.5" fill="rgba(255, 255, 255, 0.2)" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#tech-grid)" />
