@@ -14,20 +14,42 @@ export default function HeroBackground() {
     }
   }, [])
 
-  // Mouse move listener for parallax effect
+  // Mouse move and scroll listener for parallax effect
   useEffect(() => {
     if (animationsPaused) return
 
+    let lastMouseX = 0
+    let lastMouseY = 0
+
+    const updateParallax = () => {
+      const scrollY = typeof window !== 'undefined' ? window.scrollY : 0
+      const scrollProgress = scrollY / (typeof window !== 'undefined' ? window.innerHeight : 1)
+      
+      setMousePos({
+        x: lastMouseX,
+        y: lastMouseY + scrollProgress * 0.4 // scroll drifts elements vertically
+      })
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
-      // Normalized coordinates (-0.5 to 0.5)
-      const x = (e.clientX / window.innerWidth) - 0.5
-      const y = (e.clientY / window.innerHeight) - 0.5
-      setMousePos({ x, y })
+      lastMouseX = (e.clientX / window.innerWidth) - 0.5
+      lastMouseY = (e.clientY / window.innerHeight) - 0.5
+      updateParallax()
+    }
+
+    const handleScroll = () => {
+      updateParallax()
     }
 
     window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    
+    // Initial call
+    updateParallax()
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [animationsPaused])
 

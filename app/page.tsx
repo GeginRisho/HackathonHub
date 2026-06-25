@@ -100,56 +100,58 @@ export default function Home() {
         <Award className="floating-tech-icon" size={32} style={{ position: 'absolute', bottom: '35%', right: '28%', color: '#10b981', animationDelay: '-4s' }} />
         <TrendingUp className="floating-tech-icon" size={28} style={{ position: 'absolute', bottom: '38%', left: '26%', color: '#a855f7', animationDelay: '-7s' }} />
 
-        {/* Premium Vibrant Glassmorphism Hero Card */}
-        <div className="glass-card-saas float-hero-card hero-main-card" style={{ maxWidth: '640px', padding: '50px 40px', position: 'relative', zIndex: 10, boxSizing: 'border-box' }}>
-          {/* Glass Sweep Reflection effect */}
-          <div className="glass-sweep-reflection" />
-          
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '20px', background: 'rgba(99, 102, 241, 0.12)', border: '1px solid rgba(99, 102, 241, 0.25)', padding: '6px 16px', borderRadius: '30px' }}>
-            <Sparkles size={14} style={{ color: '#06b6d4' }} />
-            <span style={{ 
-              fontSize: '11px', 
-              fontWeight: 700, 
-              letterSpacing: '0.12em', 
-              color: '#a5b4fc', 
-              textTransform: 'uppercase',
+        {/* Fade-in wrapper to handle clean animation entry */}
+        <div className="hero-fade-in-wrapper">
+          {/* Premium Vibrant Glassmorphism Hero Card */}
+          <div className="glass-card-saas float-hero-card hero-main-card" style={{ maxWidth: '640px', padding: '50px 40px', position: 'relative', zIndex: 10, boxSizing: 'border-box' }}>
+            {/* Glass Sweep Reflection effect */}
+            <div className="glass-sweep-reflection" />
+            
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '20px', background: 'rgba(99, 102, 241, 0.12)', border: '1px solid rgba(99, 102, 241, 0.25)', padding: '6px 16px', borderRadius: '30px' }}>
+              <Sparkles size={14} style={{ color: '#3b82f6' }} />
+              <span style={{ 
+                fontSize: '11px', 
+                fontWeight: 700, 
+                letterSpacing: '0.12em', 
+                color: '#4f46e5', 
+                textTransform: 'uppercase',
+              }}>
+                Now Live: Next-Generation Portal
+              </span>
+            </div>
+            
+            <h1 className="animated-gradient-text-bright" style={{ 
+              fontSize: '56px', 
+              marginBottom: '20px',
+              fontFamily: 'var(--font-display)',
+              fontWeight: 800,
+              letterSpacing: '-0.04em',
+              lineHeight: '1.05'
             }}>
-              Now Live: Next-Generation Portal
-            </span>
-          </div>
-          
-          <h1 className="animated-gradient-text-bright text-glow-purple" style={{ 
-            fontSize: '56px', 
-            marginBottom: '20px',
-            fontFamily: 'var(--font-display)',
-            fontWeight: 800,
-            letterSpacing: '-0.04em',
-            lineHeight: '1.05',
-            color: '#ffffff'
-          }}>
-            Hackathon Manager
-          </h1>
-          
-          <p style={{ 
-            fontSize: '16px', 
-            color: 'rgba(255, 255, 255, 0.90)', 
-            lineHeight: '1.65',
-            marginBottom: '36px',
-            maxWidth: '520px',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            fontWeight: 400
-          }}>
-            The ultimate futuristic console for organizers, developers, and panel judges to configure rounds, push submissions, and verify evaluative scores.
-          </p>
-          
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }} className="flex-mobile-wrap">
-            <a href="/login" className="btn-cta-primary-bright btn-cta-primary-glow">
-              Login To Dashboard <ArrowRight size={18} style={{ transition: 'transform 0.3s' }} className="cta-arrow" />
-            </a>
-            <a href="/register" className="btn-cta-secondary-bright">
-              Register Now
-            </a>
+              Hackathon Manager
+            </h1>
+            
+            <p style={{ 
+              fontSize: '16px', 
+              color: 'var(--text-secondary)', 
+              lineHeight: '1.65',
+              marginBottom: '36px',
+              maxWidth: '520px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              fontWeight: 400
+            }}>
+              The ultimate futuristic console for organizers, developers, and panel judges to configure rounds, push submissions, and verify evaluative scores.
+            </p>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }} className="flex-mobile-wrap">
+              <a href="/login" className="btn-cta-primary-bright">
+                Login To Dashboard <ArrowRight size={18} style={{ transition: 'transform 0.3s' }} className="cta-arrow" />
+              </a>
+              <a href="/register" className="btn-cta-secondary-bright">
+                Register Now
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -160,33 +162,33 @@ export default function Home() {
           <h2 className="section-title">Global Platform Metrics</h2>
           <p className="section-subtitle">Scale operations across hundreds of developer leagues, universities, and panel networks.</p>
           <div className="stats-grid">
-            <div className="glass-card-saas neon-border-purple" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Users size={36} style={{ color: '#a855f7', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #a855f7)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#a855f7', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(168, 85, 247, 0.3)' }}>
+            <div className="glass-card-saas neon-border-blue" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <Users size={36} style={{ color: '#3b82f6', marginBottom: '16px' }} />
+              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#3b82f6', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
                 <CountUp end={10000} />+
               </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Active Developers</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Active Developers</p>
             </div>
-            <div className="glass-card-saas neon-border-cyan" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Trophy size={36} style={{ color: '#06b6d4', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #06b6d4)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#06b6d4', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(6, 182, 212, 0.3)' }}>
+            <div className="glass-card-saas neon-border-purple" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <Trophy size={36} style={{ color: '#4f46e5', marginBottom: '16px' }} />
+              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#4f46e5', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
                 <CountUp end={500} />+
               </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Events Hosted</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Events Hosted</p>
             </div>
-            <div className="glass-card-saas neon-border-blue" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <School size={36} style={{ color: '#3b82f6', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #3b82f6)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#3b82f6', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(59, 130, 246, 0.3)' }}>
+            <div className="glass-card-saas neon-border-cyan" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <School size={36} style={{ color: '#06b6d4', marginBottom: '16px' }} />
+              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#06b6d4', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
                 <CountUp end={200} />+
               </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Colleges Enrolled</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Colleges Enrolled</p>
             </div>
             <div className="glass-card-saas neon-border-emerald" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Gavel size={36} style={{ color: '#10b981', marginBottom: '16px', filter: 'drop-shadow(0 0 8px #10b981)' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#10b981', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em', textShadow: '0 0 15px rgba(16, 185, 129, 0.3)' }}>
+              <Gavel size={36} style={{ color: '#6366f1', marginBottom: '16px' }} />
+              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#6366f1', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
                 <CountUp end={50} />+
               </h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '14px', fontWeight: 600 }}>Judges Panel</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Judges Panel</p>
             </div>
           </div>
         </div>
@@ -199,32 +201,32 @@ export default function Home() {
           <p className="section-subtitle">Fully automated pipelines constructed for high performance developer iterations.</p>
           <div className="features-grid">
             <div className="premium-feature-card glass-card-saas neon-border-purple">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#a855f7' }}>
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4f46e5' }}>
                 <Send size={24} />
               </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Project Submission</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Push project repositories, slide decks, and demo video references directly to the registry matrix.</p>
+              <h3 className="feature-title">Project Submission</h3>
+              <p className="feature-desc">Push project repositories, slide decks, and demo video references directly to the registry matrix.</p>
             </div>
             <div className="premium-feature-card glass-card-saas neon-border-cyan">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(6, 182, 212, 0.15)', color: '#06b6d4' }}>
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6' }}>
                 <Sliders size={24} />
               </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Jury Evaluation</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Conduct weighted grading assessments utilizing slider score panels with inline logging comments.</p>
+              <h3 className="feature-title">Jury Evaluation</h3>
+              <p className="feature-desc">Conduct weighted grading assessments utilizing slider score panels with inline logging comments.</p>
             </div>
             <div className="premium-feature-card glass-card-saas neon-border-blue">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#3b82f6' }}>
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#06b6d4' }}>
                 <LineChart size={24} />
               </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Real-Time Results</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Leaderboard lists synchronize and rank team submissions instantly upon grading completions.</p>
+              <h3 className="feature-title">Real-Time Results</h3>
+              <p className="feature-desc">Leaderboard lists synchronize and rank team submissions instantly upon grading completions.</p>
             </div>
             <div className="premium-feature-card glass-card-saas neon-border-emerald">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#10b981' }}>
+              <div className="feature-icon-wrapper" style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#6366f1' }}>
                 <Award size={24} />
               </div>
-              <h3 className="feature-title" style={{ color: '#ffffff' }}>Digital Certificates</h3>
-              <p className="feature-desc" style={{ color: 'rgba(255, 255, 255, 0.75)' }}>Generate secure graduation credentials immediately download-ready from member profiles.</p>
+              <h3 className="feature-title">Digital Certificates</h3>
+              <p className="feature-desc">Generate secure graduation credentials immediately download-ready from member profiles.</p>
             </div>
           </div>
         </div>

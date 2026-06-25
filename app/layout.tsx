@@ -181,7 +181,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={pathname === '/' ? 'body-landing-dark' : ''}>
+      <body className={pathname === '/' ? 'body-landing-light' : ''}>
         <Navbar />
         <main>{children}</main>
         <Toaster position="top-right" richColors />
