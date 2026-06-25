@@ -146,7 +146,7 @@ export default function Home() {
             
             <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }} className="flex-mobile-wrap">
               <a href="/login" className="btn-cta-primary-bright">
-                Login To Dashboard <ArrowRight size={18} style={{ transition: 'transform 0.3s' }} className="cta-arrow" />
+                Login to Dashboard <ArrowRight size={18} style={{ transition: 'transform 0.3s' }} className="cta-arrow" />
               </a>
               <a href="/register" className="btn-cta-secondary-bright">
                 Register Now
@@ -155,82 +155,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* Statistics Section (Animated Glass Cards with Icons & Count-Ups) */}
-      <RevealOnScroll>
-        <div style={{ width: '100%', maxWidth: '1020px', position: 'relative', zIndex: 2, marginBottom: '120px', padding: '0 20px', boxSizing: 'border-box' }}>
-          <h2 className="section-title">Global Platform Metrics</h2>
-          <p className="section-subtitle">Scale operations across hundreds of developer leagues, universities, and panel networks.</p>
-          <div className="stats-grid">
-            <div className="glass-card-saas neon-border-blue" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Users size={36} style={{ color: '#3b82f6', marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#3b82f6', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
-                <CountUp end={10000} />+
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Active Developers</p>
-            </div>
-            <div className="glass-card-saas neon-border-purple" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Trophy size={36} style={{ color: '#4f46e5', marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#4f46e5', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
-                <CountUp end={500} />+
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Events Hosted</p>
-            </div>
-            <div className="glass-card-saas neon-border-cyan" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <School size={36} style={{ color: '#06b6d4', marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#06b6d4', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
-                <CountUp end={200} />+
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Colleges Enrolled</p>
-            </div>
-            <div className="glass-card-saas neon-border-emerald" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Gavel size={36} style={{ color: '#6366f1', marginBottom: '16px' }} />
-              <h3 style={{ fontSize: '36px', fontWeight: 800, color: '#6366f1', marginBottom: '6px', fontFamily: 'var(--font-display)', letterSpacing: '-0.02em' }}>
-                <CountUp end={50} />+
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '14px', fontWeight: 600 }}>Judges Panel</p>
-            </div>
-          </div>
-        </div>
-      </RevealOnScroll>
-
-      {/* Features Grid Section (SaaS Glassmorphism Icon Highlights) */}
-      <RevealOnScroll>
-        <div style={{ width: '100%', maxWidth: '1100px', position: 'relative', zIndex: 2, marginBottom: '120px', padding: '0 20px', boxSizing: 'border-box' }}>
-          <h2 className="section-title">Platform Features</h2>
-          <p className="section-subtitle">Fully automated pipelines constructed for high performance developer iterations.</p>
-          <div className="features-grid">
-            <div className="premium-feature-card glass-card-saas neon-border-purple">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(79, 70, 229, 0.1)', color: '#4f46e5' }}>
-                <Send size={24} />
-              </div>
-              <h3 className="feature-title">Project Submission</h3>
-              <p className="feature-desc">Push project repositories, slide decks, and demo video references directly to the registry matrix.</p>
-            </div>
-            <div className="premium-feature-card glass-card-saas neon-border-cyan">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#3b82f6' }}>
-                <Sliders size={24} />
-              </div>
-              <h3 className="feature-title">Jury Evaluation</h3>
-              <p className="feature-desc">Conduct weighted grading assessments utilizing slider score panels with inline logging comments.</p>
-            </div>
-            <div className="premium-feature-card glass-card-saas neon-border-blue">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(6, 182, 212, 0.1)', color: '#06b6d4' }}>
-                <LineChart size={24} />
-              </div>
-              <h3 className="feature-title">Real-Time Results</h3>
-              <p className="feature-desc">Leaderboard lists synchronize and rank team submissions instantly upon grading completions.</p>
-            </div>
-            <div className="premium-feature-card glass-card-saas neon-border-emerald">
-              <div className="feature-icon-wrapper" style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#6366f1' }}>
-                <Award size={24} />
-              </div>
-              <h3 className="feature-title">Digital Certificates</h3>
-              <p className="feature-desc">Generate secure graduation credentials immediately download-ready from member profiles.</p>
-            </div>
-          </div>
-        </div>
-      </RevealOnScroll>
     </div>
   )
 }

@@ -1845,4 +1845,33 @@ body.body-landing-light {
     line-height: 1.6 !important;
     margin-bottom: 32px !important;
   }
+
+  /* Force Hero Buttons on the same row with 48% width each and small gap */
+  .hero-main-card .flex-mobile-wrap {
+    flex-direction: row !important;
+    gap: 4% !important;
+    width: 100% !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+  }
+  
+  .hero-main-card .flex-mobile-wrap > a {
+    width: 48% !important;
+    padding: 12px 2px !important;
+    font-size: 12px !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    white-space: nowrap !important;
+  }
+  
+  .hero-main-card .flex-mobile-wrap > a .cta-arrow {
+    display: none !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-main-card .flex-mobile-wrap > a {
+    font-size: 10.5px !important;
+  }
 }
