@@ -118,17 +118,58 @@ export const createClient = () => {
           localStorage.setItem('mock_hackathons', JSON.stringify(defaultHackathons))
         }
 
+        // Seed default students
+        if (!localStorage.getItem('mock_students')) {
+          const defaultStudents = [
+            { id: 'stud-ajay', college_id: 'anna-college-id-12345', name: 'Ajay', email: 'ajay@anna.edu', department: 'Computer Science', year: 3, status: 'Nominated', created_at: new Date().toISOString() },
+            { id: 'stud-arun', college_id: 'anna-college-id-12345', name: 'Arun', email: 'arun@anna.edu', department: 'Information Technology', year: 4, status: 'Nominated', created_at: new Date().toISOString() },
+            { id: 'stud-bala', college_id: 'anna-college-id-12345', name: 'Bala', email: 'bala@anna.edu', department: 'Electronics', year: 2, status: 'Nominated', created_at: new Date().toISOString() },
+            { id: 'stud-gokul', college_id: '4c54426a-1625-4fe7-8174-7cc514262d1f', name: 'Gokul', email: 'gokul@psna.edu', department: 'Computer Science', year: 4, status: 'Nominated', created_at: new Date().toISOString() },
+            { id: 'stud-hari', college_id: '4c54426a-1625-4fe7-8174-7cc514262d1f', name: 'Hari', email: 'hari@psna.edu', department: 'Mechanical Engineering', year: 3, status: 'Nominated', created_at: new Date().toISOString() },
+            { id: 'stud-karthik', college_id: 'mit-college-id-12345', name: 'Karthik', email: 'karthik@mit.edu', department: 'Computer Science', year: 3, status: 'Nominated', created_at: new Date().toISOString() }
+          ]
+          localStorage.setItem('mock_students', JSON.stringify(defaultStudents))
+
+          // Add to mock_users and mock_user_profiles as well, so these students exist in credentials
+          const mockUsers = JSON.parse(localStorage.getItem('mock_users') || '[]')
+          const mockProfiles = JSON.parse(localStorage.getItem('mock_user_profiles') || '{}')
+          for (const s of defaultStudents) {
+            if (!mockUsers.some((u: any) => u.email === s.email)) {
+              mockUsers.push({
+                id: s.id,
+                email: s.email,
+                password: 'password',
+                user_metadata: {
+                  full_name: s.name,
+                  role: 'participant',
+                  college_name: s.college_id === 'anna-college-id-12345' ? 'Anna University' : s.college_id === 'mit-college-id-12345' ? 'MIT' : 'PSNA',
+                  department: s.department,
+                  year_of_study: s.year
+                }
+              })
+            }
+            mockProfiles[s.id] = {
+              id: s.id,
+              email: s.email,
+              full_name: s.name,
+              role: 'participant',
+              created_at: new Date().toISOString()
+            }
+          }
+          localStorage.setItem('mock_users', JSON.stringify(mockUsers))
+          localStorage.setItem('mock_user_profiles', JSON.stringify(mockProfiles))
+        }
+
         // Seed default registrations
         if (!localStorage.getItem('mock_registrations')) {
           const defaultRegs = [
-            {
-              id: "reg-1",
-              hackathon_id: "hackathon-1",
-              user_id: "ddbdc6a9-0602-47a0-9122-52901ae15855",
-              registration_status: "pending",
-              payment_status: "pending",
-              registered_at: new Date().toISOString()
-            }
+            { id: "reg-1", hackathon_id: "hackathon-1", user_id: "ddbdc6a9-0602-47a0-9122-52901ae15855", registration_status: "pending", payment_status: "pending", registered_at: new Date().toISOString() },
+            { id: "reg-ajay", hackathon_id: "hackathon-1", user_id: "stud-ajay", registration_status: "confirmed", payment_status: "paid", registered_at: new Date().toISOString() },
+            { id: "reg-arun", hackathon_id: "hackathon-1", user_id: "stud-arun", registration_status: "confirmed", payment_status: "paid", registered_at: new Date().toISOString() },
+            { id: "reg-bala", hackathon_id: "hackathon-1", user_id: "stud-bala", registration_status: "confirmed", payment_status: "paid", registered_at: new Date().toISOString() },
+            { id: "reg-gokul", hackathon_id: "hackathon-1", user_id: "stud-gokul", registration_status: "confirmed", payment_status: "paid", registered_at: new Date().toISOString() },
+            { id: "reg-hari", hackathon_id: "hackathon-1", user_id: "stud-hari", registration_status: "confirmed", payment_status: "paid", registered_at: new Date().toISOString() },
+            { id: "reg-karthik", hackathon_id: "hackathon-1", user_id: "stud-karthik", registration_status: "confirmed", payment_status: "paid", registered_at: new Date().toISOString() }
           ]
           localStorage.setItem('mock_registrations', JSON.stringify(defaultRegs))
         }
@@ -136,13 +177,10 @@ export const createClient = () => {
         // Seed default teams
         if (!localStorage.getItem('mock_teams')) {
           const defaultTeams = [
-            {
-              id: "team-1",
-              team_name: "Alpha Coders",
-              hackathon_id: "hackathon-1",
-              team_lead_id: "ddbdc6a9-0602-47a0-9122-52901ae15855",
-              created_at: new Date().toISOString()
-            }
+            { id: "team-1", team_name: "Alpha Coders", hackathon_id: "hackathon-1", team_lead_id: "ddbdc6a9-0602-47a0-9122-52901ae15855", created_at: new Date().toISOString() },
+            { id: "team-anna", team_name: "Anna Avengers", hackathon_id: "hackathon-1", team_lead_id: "stud-ajay", created_at: new Date().toISOString() },
+            { id: "team-psna", team_name: "PSNA Pioneers", hackathon_id: "hackathon-1", team_lead_id: "stud-gokul", created_at: new Date().toISOString() },
+            { id: "team-mit", team_name: "MIT Mavericks", hackathon_id: "hackathon-1", team_lead_id: "stud-karthik", created_at: new Date().toISOString() }
           ]
           localStorage.setItem('mock_teams', JSON.stringify(defaultTeams))
         }
@@ -150,12 +188,13 @@ export const createClient = () => {
         // Seed default team members
         if (!localStorage.getItem('mock_team_members')) {
           const defaultMembers = [
-            {
-              id: "member-1",
-              team_id: "team-1",
-              user_id: "ddbdc6a9-0602-47a0-9122-52901ae15855",
-              created_at: new Date().toISOString()
-            }
+            { id: "member-1", team_id: "team-1", user_id: "ddbdc6a9-0602-47a0-9122-52901ae15855", created_at: new Date().toISOString() },
+            { id: "member-ajay", team_id: "team-anna", user_id: "stud-ajay", created_at: new Date().toISOString() },
+            { id: "member-arun", team_id: "team-anna", user_id: "stud-arun", created_at: new Date().toISOString() },
+            { id: "member-bala", team_id: "team-anna", user_id: "stud-bala", created_at: new Date().toISOString() },
+            { id: "member-gokul", team_id: "team-psna", user_id: "stud-gokul", created_at: new Date().toISOString() },
+            { id: "member-hari", team_id: "team-psna", user_id: "stud-hari", created_at: new Date().toISOString() },
+            { id: "member-karthik", team_id: "team-mit", user_id: "stud-karthik", created_at: new Date().toISOString() }
           ]
           localStorage.setItem('mock_team_members', JSON.stringify(defaultMembers))
         }
@@ -180,6 +219,16 @@ export const createClient = () => {
             }
           ]
           localStorage.setItem('mock_submissions', JSON.stringify(defaultSubs))
+        }
+
+        // Seed default evaluations
+        if (!localStorage.getItem('mock_evaluations')) {
+          const defaultEvals = [
+            { id: "eval-anna", judge_id: "db97b9f4-8d9c-4686-a6ed-40d1f56a36dd", team_id: "team-anna", hackathon_id: "hackathon-1", innovation_score: 9, technical_score: 9, impact: 9, ux: 9, presentation: 9, total_score: 90.0, feedback: "Excellent innovation and execution!" },
+            { id: "eval-psna", judge_id: "db97b9f4-8d9c-4686-a6ed-40d1f56a36dd", team_id: "team-psna", hackathon_id: "hackathon-1", innovation_score: 8, technical_score: 9, impact: 8, ux: 9, presentation: 8, total_score: 85.0, feedback: "Great technical architecture!" },
+            { id: "eval-mit", judge_id: "db97b9f4-8d9c-4686-a6ed-40d1f56a36dd", team_id: "team-mit", hackathon_id: "hackathon-1", innovation_score: 8, technical_score: 8, impact: 8, ux: 8, presentation: 8, total_score: 80.0, feedback: "Solid presentation and MVP." }
+          ]
+          localStorage.setItem('mock_evaluations', JSON.stringify(defaultEvals))
         }
       }
     }
